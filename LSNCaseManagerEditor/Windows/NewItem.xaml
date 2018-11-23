@@ -1,0 +1,44 @@
+﻿<Window x:Class="LSNCaseManagerEditor.Windows.NewItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LSNCaseManagerEditor.Windows"
+        mc:Ignorable="d"
+        Title="Create New Item" Height="400" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Column 1 -->
+        <StackPanel x:Name="Column1" Grid.Column="0">
+            <Label x:Name="DataTypeLabel" Margin="5,5,5,5" Content="Data Type: " HorizontalAlignment="Right"/>
+        </StackPanel>
+
+        <!-- Column 2 -->
+        <StackPanel x:Name="Column2" Grid.Column="1" >
+            <ComboBox x:Name="DataTypeBox" Margin="5,5,5,5" SelectionChanged="DataTypeBox_SelectionChanged">
+                <ComboBoxItem Content="InterrogationData"/>
+                <ComboBoxItem Content="SceneData"/>
+                <ComboBoxItem Content="StageData"/>
+                <ComboBoxItem Content="WrittenData"/>
+                <ComboBoxItem Content="EntityData"/>
+                <ComboBoxItem Content="StageData"/>
+            </ComboBox>
+        </StackPanel>
+        
+        <!-- Column 3 -->
+        <StackPanel x:Name="Column3" Grid.Column="2">
+            <Label x:Name="IDLabel" Margin="5,5,5,5" Content="Unique ID: " HorizontalAlignment="Right"/>
+        </StackPanel>
+
+        <!-- Column 4 -->
+        <StackPanel x:Name="Column4" Grid.Column="3">
+            <TextBox x:Name="IDBox" Margin="5,5,5,5" Text="Required" FontStyle="Italic" FontWeight="DemiBold" TextChanged="IDBox_TextChanged"/>
+        </StackPanel>
+    </Grid>
+</Window>

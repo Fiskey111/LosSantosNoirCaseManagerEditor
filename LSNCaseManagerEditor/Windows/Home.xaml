@@ -1,0 +1,68 @@
+﻿<Window x:Class="LSNCaseManagerEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LSNCaseManagerEditor"
+        mc:Ignorable="d"
+        Title="L.S. Noir Case Manager" Height="600" Width="600" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <ToolBarTray Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="592">
+            <ToolBar Band="0" BandIndex="0">
+                <Button Name="ToolBarHome" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_home.png" ToolTip="Return to home" />
+                </Button>
+                <Button Name="ToolBarNewCase" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_new.png" ToolTip="Create new case" />
+                </Button>
+                <Button Name="ToolBarOpenCase" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_open.png" ToolTip="Open existing case" />
+                </Button>
+                <Button Name="ToolBarSaveCase" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_save.png" ToolTip="Save current case" />
+                </Button>
+            </ToolBar>
+            <ToolBar Band="0" BandIndex="1">
+                <Button Name="ToolBarAddItem" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_newItem.png" ToolTip="Add case item" />
+                </Button>
+                <Button Name="ToolBarEditItem" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_itemEdit.png" ToolTip="Edit selected item" />
+                </Button>
+                <Button Name="ToolBarRemoveItem" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_delItem.png" ToolTip="Remove case item" />
+                </Button>
+            </ToolBar>
+            <ToolBar Band="0" BandIndex="2" HorizontalAlignment="Right">
+                <Button Name="ToolBarHelp" Click="OnClick">
+                    <Image Source="../gfx/toolbar/tb_help.png" ToolTip="Case information" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+               
+        <ListView Grid.Row="1" Grid.Column="0" Name="MainWindowDisplay" HorizontalAlignment="Stretch" Margin="10,10,10,10" Width="500">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" x:Name="IDColumn" Width="300"/>
+                    <GridViewColumn Header="Data Type" x:Name="DataTypeColumn" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StatusBar Grid.Row="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Bottom" Width="592">
+            <Label Content="Current Case:" FontSize="10"/>
+            <Label Name="CurrentCaseLbl" Content="None" FontSize="10" Width="300" FontWeight="DemiBold"/>
+            <Label Content="Last Saved:" FontSize="10" HorizontalAlignment="Right"/>
+            <Label Name="LastSavedLbl" Content="Not Saved"  FontSize="10" HorizontalAlignment="Right" FontWeight="DemiBold"/>
+        </StatusBar>
+    </Grid>
+</Window>

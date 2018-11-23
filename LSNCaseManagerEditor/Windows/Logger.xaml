@@ -1,0 +1,13 @@
+﻿<Window x:Class="LSNCaseManagerEditor.Windows.Logger"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LSNCaseManagerEditor.Windows"
+        mc:Ignorable="d"
+        Title="Logger" Height="100" Width="400" WindowStartupLocation="Manual" Left="0" Top="0" ResizeMode="NoResize" ShowActivated="False" ShowInTaskbar="False" Focusable="True" IsHitTestVisible="True" IsTabStop="False">
+    <ScrollViewer Name="ScrollView" VerticalScrollBarVisibility="Auto" Height="75">
+        <TextBlock Name="LogBox" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True"/>
+    </ScrollViewer>
+    
+</Window>
