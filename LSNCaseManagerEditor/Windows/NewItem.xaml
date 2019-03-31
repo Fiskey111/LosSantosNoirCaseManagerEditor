@@ -5,23 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LSNCaseManagerEditor.Windows"
         mc:Ignorable="d"
-        Title="Create New Item" Height="400" Width="700" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Create New Item" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="125" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="AUTO" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <!-- Column 1 -->
-        <StackPanel x:Name="Column1" Grid.Column="0">
-            <Label x:Name="DataTypeLabel" Margin="5,5,5,5" Content="Data Type: " HorizontalAlignment="Right"/>
+        <StackPanel x:Name="Column1" Grid.Column="0" Grid.RowSpan="16">
+            <Label x:Name="DataTypeLabel" Margin="2,2,2,2" Content="Data Type: " HorizontalAlignment="Right"/>
         </StackPanel>
 
         <!-- Column 2 -->
-        <StackPanel x:Name="Column2" Grid.Column="1" >
-            <ComboBox x:Name="DataTypeBox" Margin="5,5,5,5" SelectionChanged="DataTypeBox_SelectionChanged">
+        <StackPanel x:Name="Column2" Grid.Column="1" Grid.RowSpan="16" Grid.Row="0">
+            <ComboBox x:Name="DataTypeBox" Margin="2,2,2,2" SelectionChanged="DataTypeBox_SelectionChanged">
                 <ComboBoxItem Content="InterrogationData"/>
                 <ComboBoxItem Content="SceneData"/>
                 <ComboBoxItem Content="StageData"/>
@@ -30,15 +49,8 @@
                 <ComboBoxItem Content="StageData"/>
             </ComboBox>
         </StackPanel>
-        
-        <!-- Column 3 -->
-        <StackPanel x:Name="Column3" Grid.Column="2">
-            <Label x:Name="IDLabel" Margin="5,5,5,5" Content="Unique ID: " HorizontalAlignment="Right"/>
-        </StackPanel>
 
-        <!-- Column 4 -->
-        <StackPanel x:Name="Column4" Grid.Column="3">
-            <TextBox x:Name="IDBox" Margin="5,5,5,5" Text="Required" FontStyle="Italic" FontWeight="DemiBold" TextChanged="IDBox_TextChanged"/>
-        </StackPanel>
+        <Label x:Name="IDLabel" Grid.Row="0" Grid.Column="2" Margin="2,2,2,2" Content="Unique ID: " HorizontalAlignment="Right"/>
+        <TextBox x:Name="IDBox" Grid.Row="0" Grid.Column="3" Margin="2,2,2,2" Text="Required" FontStyle="Italic" FontWeight="DemiBold" TextChanged="IDBox_TextChanged"/>
     </Grid>
 </Window>

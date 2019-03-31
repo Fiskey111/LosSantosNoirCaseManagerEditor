@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LSNCaseManagerEditor.Windows"
         mc:Ignorable="d"
-        Title="Logger" Height="100" Width="400" WindowStartupLocation="Manual" Left="0" Top="0" ResizeMode="NoResize" ShowActivated="False" ShowInTaskbar="False" Focusable="True" IsHitTestVisible="True" IsTabStop="False">
-    <ScrollViewer Name="ScrollView" VerticalScrollBarVisibility="Auto" Height="75">
+        Title="Logger"  Height="150" Width="400" WindowStartupLocation="Manual" Left="0" ResizeMode="NoResize" ShowActivated="False" ShowInTaskbar="False" Focusable="True" IsHitTestVisible="True" IsTabStop="False" Icon="/LSNCaseManagerEditor;component/gfx/toolbar/tb_help.png" Topmost="True">
+    <ScrollViewer Grid.Row="0" Name="ScrollView" VerticalScrollBarVisibility="Auto" Height="125">
         <TextBlock Name="LogBox" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True"/>
     </ScrollViewer>
-    
 </Window>

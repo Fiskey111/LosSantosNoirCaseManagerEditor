@@ -1,10 +1,12 @@
 ﻿using LSNCaseManagerEditor.Windows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace LSNCaseManagerEditor
 {
@@ -39,12 +41,22 @@ namespace LSNCaseManagerEditor
             _t.Abort();
         }
 
+        private static float totalBytesOfMemoryUsed = 0;
         private static void Process()
         {
             while (true)
             {
+                totalBytesOfMemoryUsed = (float) System.Diagnostics.Process.GetCurrentProcess().WorkingSet64;
+
                 Thread.Yield();
             }
         }
+
+        internal static string GetTotalMemoryString()
+        {
+            return $"{Math.Round(totalBytesOfMemoryUsed / (1024 * 1024), 1)} MB / {Math.Round(GetTotalMemoryInBytes() / (1024 * 1024 * 1024), 1)} GB RAM used";
+        }
+
+        private static float GetTotalMemoryInBytes() => (float) new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory;
     }
 }

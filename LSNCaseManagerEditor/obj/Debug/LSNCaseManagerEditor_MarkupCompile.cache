@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\RiderProjects\LSNCaseManagerEditor\LSNCaseManagerEditor\App.xaml
-51572724405
+6943354111
 
-13-948180767
-11-793190700
-Windows\About.xaml;Windows\Home.xaml;Windows\Logger.xaml;Windows\NewInterrogationLines.xaml;Windows\NewItem.xaml;
+111961111580
+12-783847183
+Windows\About.xaml;Windows\Home.xaml;Windows\Logger.xaml;Windows\NewItems\NewInterrogationLines.xaml;Windows\NewItem.xaml;Windows\NewItems\NewSceneItem.xaml;
 
-True
+False
 

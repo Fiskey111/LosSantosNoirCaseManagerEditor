@@ -48,21 +48,23 @@
                 </Button>
             </ToolBar>
         </ToolBarTray>
-               
+
         <ListView Grid.Row="1" Grid.Column="0" Name="MainWindowDisplay" HorizontalAlignment="Stretch" Margin="10,10,10,10" Width="500">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" x:Name="IDColumn" Width="300"/>
-                    <GridViewColumn Header="Data Type" x:Name="DataTypeColumn" Width="200"/>
+                <GridView AllowsColumnReorder="True">
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="175"/>
+                    <GridViewColumn Header="Data Type" DisplayMemberBinding="{Binding DataType}" Width="150"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="175"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <StatusBar Grid.Row="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Bottom" Width="592">
             <Label Content="Current Case:" FontSize="10"/>
-            <Label Name="CurrentCaseLbl" Content="None" FontSize="10" Width="300" FontWeight="DemiBold"/>
+            <Label Name="CurrentCaseLbl" Content="None" FontSize="10" Width="175" FontWeight="DemiBold"/>
+            <Label x:Name="MemUsed" FontSize="10" HorizontalAlignment="Stretch" Content="MEMORY USED"/>
             <Label Content="Last Saved:" FontSize="10" HorizontalAlignment="Right"/>
-            <Label Name="LastSavedLbl" Content="Not Saved"  FontSize="10" HorizontalAlignment="Right" FontWeight="DemiBold"/>
+            <Label Name="LastSavedLbl" FontSize="10" HorizontalAlignment="Left" FontWeight="DemiBold"/>
         </StatusBar>
     </Grid>
 </Window>

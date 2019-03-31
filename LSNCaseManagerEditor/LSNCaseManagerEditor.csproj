@@ -34,9 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CaseManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\LSNCaseManager\CaseManager\bin\Release\CaseManager.dll</HintPath>
+    <Reference Include="CaseManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\LSNCaseManager\CaseManager\bin\Debug\CaseManager.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -54,17 +56,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Scenarios.cs" />
     <Compile Include="Windows\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Logger.xaml.cs">
       <DependentUpon>Logger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewInterrogationLines.xaml.cs">
+    <Compile Include="Windows\NewItems\NewInterrogationLines.xaml.cs">
       <DependentUpon>NewInterrogationLines.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NewItem.xaml.cs">
       <DependentUpon>NewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NewItems\NewSceneItem.xaml.cs">
+      <DependentUpon>NewSceneItem.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\About.xaml">
       <SubType>Designer</SubType>
@@ -87,11 +93,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\NewInterrogationLines.xaml">
+    <Page Include="Windows\NewItems\NewInterrogationLines.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\NewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NewItems\NewSceneItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

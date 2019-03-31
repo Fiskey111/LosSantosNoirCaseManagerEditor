@@ -1,14 +1,13 @@
-﻿using LSNCaseManagerEditor.Windows;
+﻿using CaseManager.CaseData;
+using LSNCaseManagerEditor.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using Label = System.Windows.Controls.Label;
 
 namespace LSNCaseManagerEditor
@@ -24,10 +23,33 @@ namespace LSNCaseManagerEditor
         public MainWindow()
         {
             InitializeComponent();
-
+            
             MainThread.Start();
-
+            
             AddLog("Starting main thread");
+
+            Thread thread = new Thread(TestMethod);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+
+        private void TestMethod()
+        {
+            int fileCount = 0;
+            while (true)
+            {
+                string mem = MainThread.GetTotalMemoryString();
+                Dispatcher.Invoke(new Action<string>(value => MemUsed.Content = value), mem);
+
+                if (MainThread.CurrentCase != null && fileCount != MainThread.CurrentCase.TotalCurrentFiles())
+                {
+                    Dispatcher.Invoke(new Action<string>(value => LastSavedLbl.Content = value), "Not Saved");
+                    Dispatcher.Invoke(new Action<Brush>(value => LastSavedLbl.Foreground = value), Brushes.Red);
+                    fileCount = MainThread.CurrentCase.TotalCurrentFiles();
+                }
+
+                Thread.Sleep(0500);
+            }
         }
 
         public void AddLog(string text)
@@ -52,6 +74,11 @@ namespace LSNCaseManagerEditor
             if (sender == ToolBarSaveCase)
             {
                 AddLog("Saving case");
+                if (MainThread.CurrentCase == null)
+                {
+                    MessageBox.Show("You MUST load or create a new case first before saving it!", "No Case Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 SaveCase();
             }
             
@@ -66,6 +93,11 @@ namespace LSNCaseManagerEditor
             if (sender == ToolBarAddItem)
             {
                 AddLog("Adding item");
+                if (MainThread.CurrentCase == null)
+                {
+                    MessageBox.Show("You MUST load or create a new case first before adding a new item!", "No Case Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 _newItem = new NewItem();
                 _newItem.ShowDialog();
                 RefreshData();
@@ -74,8 +106,8 @@ namespace LSNCaseManagerEditor
 
         private void OpenCase()
         {
-            MessageBox.Show("Please select the ROOT folder for your case" 
-                + Environment.NewLine + "Typically this is the name of the case" 
+            MessageBox.Show("Please select the ROOT folder for your case"
+                + Environment.NewLine + "Typically this is the name of the case"
                 + Environment.NewLine + Environment.NewLine
                 + "Example: Grand Theft Auto V > Plugins > LSPDFR > LSNoir > Cases > Downtown Delivery   <-- You will select \"Downtown Delivery\", not any subfolders"
                 , "Important Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -96,7 +128,10 @@ namespace LSNCaseManagerEditor
 
             AddLog($"Loading case from: {MainThread.RootPath}");
             MainThread.CurrentCase = new CaseManager.CaseLoader.Case(MainThread.RootPath);
-            AddLog($"Case loaded");
+            AddLog($"Case loaded with {MainThread.CurrentCase.FileCount}");
+
+            LastSavedLbl.Content = "Not Saved";
+            LastSavedLbl.Foreground = Brushes.Red;
 
             MainWindowDisplay.Items.Clear();
             RefreshData();
@@ -104,9 +139,6 @@ namespace LSNCaseManagerEditor
 
         private void NewCase()
         {
-            AddLog("new CaseManager.CaseLoader.Case();");
-            MainThread.CurrentCase = new CaseManager.CaseLoader.Case();
-
             AddLog("Requesting case name");
             MessageBox.Show("Please select the ROOT folder for your case"
                 + Environment.NewLine + "If you don't have a folder created, use the \"Make new folder\" button to create it"
@@ -138,6 +170,9 @@ namespace LSNCaseManagerEditor
             MainThread.RootPath = folderBrowserDialog.SelectedPath;
             CurrentCaseLbl.Content = Path.GetFileName(MainThread.RootPath);
 
+            LastSavedLbl.Content = "Not Saved";
+            LastSavedLbl.Foreground = Brushes.Red;
+
             MainThread.CurrentCase = new CaseManager.CaseLoader.Case();
         }
 
@@ -150,9 +185,10 @@ namespace LSNCaseManagerEditor
                 return;
             }
 
-            MainThread.CurrentCase.SaveData();
+            MainThread.CurrentCase.SaveData(MainThread.RootPath);
 
             LastSavedLbl.Content = DateTime.Now.ToShortDateString() + " | " + DateTime.Now.ToShortTimeString();
+            LastSavedLbl.Foreground = Brushes.Green;
         }
 
         private TreeViewItem AddItem(string name, bool isFolder)
@@ -185,6 +221,7 @@ namespace LSNCaseManagerEditor
         {
             MainThread.AddLog("Refreshing data");
 
+            this.MainWindowDisplay.Items.Clear();
             List<CaseManager.CaseData.IData> _dataList = new List<CaseManager.CaseData.IData>();
 
             _dataList.AddRange(MainThread.CurrentCase.CSIData.Values);
@@ -194,9 +231,17 @@ namespace LSNCaseManagerEditor
             _dataList.AddRange(MainThread.CurrentCase.SceneData.Values);
             _dataList.AddRange(MainThread.CurrentCase.StageData.Values);
             _dataList.AddRange(MainThread.CurrentCase.WrittenData.Values);
-            
-            MainWindowDisplay.ItemsSource = _dataList.Select(x => x.ID);
+
+            AddItemsToData(_dataList.ToArray());
             MainThread.AddLog($"Total items: {MainWindowDisplay.Items.Count}");
+        }
+
+        private void AddItemsToData(IData[] data)
+        {
+            foreach (IData d in data)
+            {
+                this.MainWindowDisplay.Items.Add(d);
+            }
         }
     }
 }

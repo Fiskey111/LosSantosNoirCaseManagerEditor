@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\cfisk\RiderProjects\LSNCaseManagerEditor\LSNCaseManagerEditor\obj\Debug\
+F:\RiderProjects\LSNCaseManagerEditor\LSNCaseManagerEditor\obj\Debug\
 LSNCaseManagerEditor
 none
 false
 DEBUG;TRACE
-C:\Users\cfisk\RiderProjects\LSNCaseManagerEditor\LSNCaseManagerEditor\App.xaml
-51572724405
+F:\RiderProjects\LSNCaseManagerEditor\LSNCaseManagerEditor\App.xaml
+6943354111
 
-131944461228
-11-1732923809
-Windows\About.xaml;Windows\Home.xaml;Windows\Logger.xaml;Windows\NewInterrogationLines.xaml;Windows\NewItem.xaml;
+15237250782
+12-783847183
+Windows\About.xaml;Windows\Home.xaml;Windows\Logger.xaml;Windows\NewItems\NewInterrogationLines.xaml;Windows\NewItem.xaml;Windows\NewItems\NewSceneItem.xaml;
 
-False
+True
 
